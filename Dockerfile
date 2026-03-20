@@ -1,12 +1,7 @@
-FROM ghcr.io/linuxserver/webtop:ubuntu-mate
+# Uses a lightweight version of Chromium already set up for the web
+FROM linuxserver/chromium:latest
 
-# Install Node.js
-RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs
+# Basic configuration to help it run on lower-end servers
+EXPOSE 3000
 
-WORKDIR /app
-COPY . .
-RUN npm install
-
-# This environment starts the desktop; you can then open a terminal 
-# inside the web-view and run 'npm start' to see your browser app.
+ENV CHROME_FLAGS="--disable-dev-shm-usage --no-sandbox --disable-gpu"
