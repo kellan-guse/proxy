@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: cloud-browser
+    env: docker
+    plan: standard # Note: Free tier might be too slow for a GUI
+    region: oregon
+    envVars:
+      - key: TITLE
+        value: My Cloud Browser
